@@ -1,0 +1,20 @@
+<h1>{{title}}</h1>
+
+<div>
+  <h3>Signup form</h3>
+
+  {{!-- Form goes here --}}
+  <form action='/signup' method='POST' enctype="multipart/form-data">
+  
+    <label for=''>Email</label>
+    <input type='text' name='email'>
+  
+    <label for=''>Password</label>
+    <input type='password' name='password'>
+
+    <label for=''>Profile picture</label>
+    <input type='file' name='profilepic'>
+  
+    <button type='submit'>Submit</button>
+  </form>
+</div>

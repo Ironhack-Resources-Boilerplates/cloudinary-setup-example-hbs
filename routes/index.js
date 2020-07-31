@@ -7,7 +7,7 @@ const parser = require('./../config/cloudinary');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Cloudinary Demo' });
+  res.render('signup', { title: 'Cloudinary Demo' });
 });
 
 router.get('/profile', function (req, res, next) {
@@ -21,10 +21,10 @@ router.post('/signup', parser.single('profilepic'), function (req, res, next) {
 
   const newUser = { email, password, profilepic: image_url };
   User.create(newUser)
-  .then( (data) => {
-    res.render('profile', { newUser })
-  })
-  .catch( (err) => console.log(err));
+    .then((data) => {
+      res.render('profile', { newUser })
+    })
+    .catch((err) => console.log(err));
 
 });
 
