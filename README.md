@@ -1,4 +1,4 @@
-# cloudinary-example
+# Cloudinary Setup - NodeJS, Express, SSR
 
 
 ### 1. Create free Cloudinary account 
@@ -19,6 +19,7 @@ npm install cloudinary multer-storage-cloudinary multer --save
 ```
 
 
+
 ### 3. Configure Cloudinary & Multer
 
 In your terminal:
@@ -27,7 +28,10 @@ mkdir config
 touch config/cloudinary.js
 ```
 
-In config/cloudinary.js
+
+
+##### `config/cloudinary.js`
+
 ```
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
@@ -50,21 +54,28 @@ const storage = cloudinaryStorage({
  
 const parser = multer({ storage: storage });
 
-module.exports = parser;
+module.exports = parser;js
 ```
+
 
 
 ### 4. Create the form in the hbs view
 
 * Add the attribute ```enctype="multipart/form-data"``` to your form   
+
 * Add the attribute ```type="file"``` to the input field that will hold the image.
 
-```
+  
+
+##### `views/signup.hbs`
+
+```html
 <form action="/endPointName" method="POST" enctype="multipart/form-data">
-  <input type="file" name="photo" />
+  <input type="file" name="profilepic" />
   <button type="submit">New GIF</button>
 </form>
 ```
+
 
 
 ### 5. Inject the parsing middleware into the route
@@ -73,10 +84,14 @@ In the router where we want to upload the image:
 * Import the parsing middleware    
 * Add it as an argument prior to the function that handles the POST request
 
-```
+
+
+##### `routes/index.js`
+
+```js
 const parser = require('./../config/cloudinary');
 
-router.post('/endPointName', parser.single('photo'), (req, res, next) =>{
+router.post('/endPointName', parser.single('profilepic'), (req, res, next) =>{
   // thanks to multer, you have now access to the new object "req.file"
   
   // get the image URL to save it to the database and/or render the image in your view
@@ -85,5 +100,7 @@ router.post('/endPointName', parser.single('photo'), (req, res, next) =>{
 ```
 
 
+
 #### Documentation
+
 [Cloudinary](https://cloudinary.com/documentation)
