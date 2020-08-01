@@ -15,7 +15,7 @@ Install the following 3 packages in your project folder:
 
 In your terminal:
 ```
-npm install cloudinary multer-storage-cloudinary multer --save
+npm install cloudinary@1.21.0 multer-storage-cloudinary@2.2.1 multer@1.4.2 --save --save-exact
 ```
 
 
